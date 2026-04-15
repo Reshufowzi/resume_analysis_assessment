@@ -4,6 +4,7 @@ Flask-PyMongo==2.3.0
 flask-login==0.6.2
 pandas==1.5.3
 nltk==3.7
+numpy==1.23.5
 spacy==3.5.0
 python-dotenv==1.0.0
 opencv-python==4.7.0.72  # For video capturing (if needed)
