@@ -10,10 +10,13 @@ COPY . /app
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port (change if your app uses different port)
+# Download spacy model (IMPORTANT)
+RUN python -m spacy download en_core_web_sm
+
+# Expose port
 EXPOSE 5000
 
-# Environment variables (optional)
+# Environment variables
 ENV PYTHONUNBUFFERED=1
 
 # Run application
