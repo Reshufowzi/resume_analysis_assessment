@@ -12,4 +12,4 @@ def test_database_connection():
 # Run the app
 if __name__ == "__main__":
     test_database_connection()  # Test the database connection before running the app
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
