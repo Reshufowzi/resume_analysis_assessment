@@ -1,5 +1,6 @@
 # List of dependencies (Flask, NLP libraries, etc.)
 Flask==2.3.2
+PyMuPDF==1.23.7
 Flask-PyMongo==2.3.0
 flask-login==0.6.2
 pandas==1.5.3
