@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experienced Candidate Results</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Soft pink gradient */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container */
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Headings */
+        h1 {
+            color: #ff6f61; /* Coral red */
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #6a11cb; /* Purple */
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #4CAF50; /* Green */
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* Paragraphs and Lists */
+        p, ul {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+            text-align: left;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        ul li {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #ff6f61; /* Coral red */
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(255, 111, 97, 0.3);
+        }
+
+        button:hover {
+            background-color: #ff3b2f; /* Darker coral red */
+        }
+
+        /* Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb); /* Multi-color gradient */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Results for {{ username }}</h1>
+
+        <!-- Experience Information -->
+        <h2>Experience Information</h2>
+        <p><strong>Total Experience:</strong> {{ total_experience }} years</p>
+        <p><strong>Current Position:</strong> {{ current_position }}</p>
+        <p><strong>Current Company:</strong> {{ current_company }}</p>
+
+        <!-- Resume Analysis -->
+        <h2>Resume Analysis</h2>
+
+        <!-- ATS Score -->
+        <h3>ATS Resume Score: {{ ats_score }}</h3>
+
+        <!-- Extracted Skills -->
+        <h3>Extracted Skills:</h3>
+        <ul>
+            {% for skill in skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Buttons -->
+        <div class="button-group">
+            <!-- Start Assessment Button -->
+            <form action="{{ url_for('start_assessment', username=username) }}" method="POST">
+                <button type="submit">Start Assessment</button>
+            </form>
+
+            <!-- Start Demo Interview Button -->
+            <form action="{{ url_for('start_demo_interview', username=username) }}" method="POST">
+                <button type="submit">Start Demo Interview</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

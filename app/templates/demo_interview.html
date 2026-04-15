@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Interview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        video {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+            border: 2px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Demo Interview</h1>
+    <h2 id="question">Press "Start Interview" to begin</h2>
+
+    <button onclick="startInterview()">Start Interview</button>
+    <button onclick="nextQuestion()" id="nextBtn" disabled>Next Question</button>
+    <button onclick="stopRecording()" id="stopBtn" disabled>Stop Recording</button>
+    <button onclick="downloadVideo()" id="downloadBtn" disabled>Download Video</button>
+    <button onclick="restartInterview()">Restart Interview</button>
+    <button onclick="backtohome()">Back to Home</button>
+    <button onclick="startassment()">Start assessment</button>
+
+    <h3>Live Camera Feed:</h3>
+    <video id="liveVideo" autoplay playsinline></video> <!-- Live preview -->
+    
+    <h3>Recorded Video:</h3>
+    <video id="recordedVideo" controls></video>
+
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+        let questionIndex = 0;
+        let stream;
+        let recordedBlob;
+        let mixedStream;
+        let audioContext = new AudioContext(); // Audio context for mixing
+
+        // Predefined Interview Questions
+        let questions = [
+            "Tell me about yourself.",
+            "What are your strengths and weaknesses?",
+            "Why should we hire you?",
+            "Where do you see yourself in 5 years?",
+            "Describe a challenge you faced and how you overcame it.",
+            "What is your experience with Python?",
+            "Explain the concept of Object-Oriented Programming.",
+            "How do you handle work pressure?",
+            "What motivates you to do your best on the job?",
+            "What do you know about our company?"
+        ];
+
+        async function startInterview() {
+            if (questionIndex >= questions.length) {
+                alert("Interview is over!");
+                return;
+            }
+
+            // Start recording only once
+            if (!mediaRecorder || mediaRecorder.state === "inactive") {
+                await startRecording();
+            }
+
+            // Display and speak the first question
+            let questionText = questions[questionIndex];
+            document.getElementById("question").innerText = questionText;
+            speakQuestion(questionText);
+
+            // Enable the "Next Question" button
+            document.getElementById("nextBtn").disabled = false;
+        }
+
+        function nextQuestion() {
+            if (questionIndex >= questions.length - 1) {
+                alert("No more questions!");
+                return;
+            }
+
+            questionIndex++;
+            let questionText = questions[questionIndex];
+            document.getElementById("question").innerText = questionText;
+            speakQuestion(questionText);
+        }
+
+        function speakQuestion(text) {
+            let speech = new SpeechSynthesisUtterance(text);
+            speech.lang = "en-US";
+            speech.onstart = () => {
+                console.log("AI speaking:", text);
+            };
+            speech.onend = () => {
+                console.log("AI finished speaking");
+            };
+
+            let synth = window.speechSynthesis;
+            synth.speak(speech);
+        }
+
+        async function startRecording() {
+            try {
+                // Capture Video & Microphone
+                stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+
+                // Set live preview (without microphone audio)
+                let liveVideoStream = new MediaStream([stream.getVideoTracks()[0]]); // Only video for live preview
+                document.getElementById("liveVideo").srcObject = liveVideoStream;
+
+                document.getElementById("stopBtn").disabled = false;
+                document.getElementById("downloadBtn").disabled = true;
+
+                // Create a new stream for recording (video + microphone audio + AI audio)
+                let audioTrack = stream.getAudioTracks()[0]; // User's microphone
+                let videoTrack = stream.getVideoTracks()[0]; // User's camera
+
+                // Create a MediaStream for recording
+                mixedStream = new MediaStream([videoTrack, audioTrack]);
+
+                mediaRecorder = new MediaRecorder(mixedStream);
+                recordedChunks = [];
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
+                    let videoURL = URL.createObjectURL(recordedBlob);
+                    document.getElementById("recordedVideo").src = videoURL;
+                    document.getElementById("downloadBtn").disabled = false; // Enable download button
+                };
+
+                mediaRecorder.start();
+            } catch (err) {
+                alert("Error accessing camera/microphone: " + err);
+            }
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            document.getElementById("stopBtn").disabled = true;
+            document.getElementById("nextBtn").disabled = true;
+
+            // Stop all tracks
+            let tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+        }
+
+        function downloadVideo() {
+            if (recordedBlob) {
+                let a = document.createElement("a");
+                a.href = URL.createObjectURL(recordedBlob);
+                a.download = "interview_recording.mp4";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            } else {
+                alert("No video recorded!");
+            }
+        }
+
+        function restartInterview() {
+            if (mediaRecorder && mediaRecorder.state === "recording") {
+                mediaRecorder.stop();
+            }
+
+            questionIndex = 0;
+            recordedChunks = [];
+            document.getElementById("question").innerText = "Press 'Start Interview' to begin";
+            document.getElementById("stopBtn").disabled = true;
+            document.getElementById("downloadBtn").disabled = true;
+            document.getElementById("nextBtn").disabled = true;
+            document.getElementById("recordedVideo").src = "";
+            window.speechSynthesis.cancel(); // Stop any ongoing speech
+        }
+
+        function backtohome() {
+            window.location.href = "{{ url_for('student_results', username=username) }}";
+        }
+
+        function startassment() {
+            window.location.href = "{{ url_for('start_assessment', username=username) }}";
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+{
+    "Python": [
+        {
+            "question": "What is the primary data structure used in Python for storing key-value pairs?",
+            "options": ["List", "Tuple", "Dictionary", "Set"],
+            "answer": "Dictionary"
+        },
+        {
+            "question": "Which of the following is used for memory management in Python?",
+            "options": ["Garbage Collection", "Pointer Arithmetic", "Manual Memory Allocation", "All of the above"],
+            "answer": "Garbage Collection"
+        },
+        {
+            "question": "What does the 'self' keyword represent in Python classes?",
+            "options": ["Current class instance", "Parent class instance", "Global variable", "None of the above"],
+            "answer": "Current class instance"
+        }
+    ],
+    "Machine Learning": [
+        {
+            "question": "Which algorithm is best suited for classification problems?",
+            "options": ["K-Means", "Linear Regression", "Decision Tree", "Apriori"],
+            "answer": "Decision Tree"
+        },
+        {
+            "question": "What is the purpose of cross-validation in ML?",
+            "options": ["Reduce overfitting", "Increase dataset size", "Improve GPU efficiency", "None of the above"],
+            "answer": "Reduce overfitting"
+        },
+        {
+            "question": "What is the role of a loss function in machine learning?",
+            "options": ["Measure model performance", "Optimize model parameters", "Both A and B", "None of the above"],
+            "answer": "Both A and B"
+        }
+    ],
+    "SQL": [
+        {
+            "question": "Which SQL command is used to retrieve data from a database?",
+            "options": ["SELECT", "INSERT", "UPDATE", "DELETE"],
+            "answer": "SELECT"
+        },
+        {
+            "question": "What is the purpose of the GROUP BY clause in SQL?",
+            "options": ["Filter rows", "Sort rows", "Aggregate rows", "Join tables"],
+            "answer": "Aggregate rows"
+        },
+        {
+            "question": "Which SQL keyword is used to eliminate duplicate rows in the result set?",
+            "options": ["DISTINCT", "UNIQUE", "LIMIT", "WHERE"],
+            "answer": "DISTINCT"
+        }
+    ],
+    "Java": [
+        {
+            "question": "What is the default value of a local variable in Java?",
+            "options": ["0", "null", "undefined", "Local variables have no default value"],
+            "answer": "Local variables have no default value"
+        },
+        {
+            "question": "Which keyword is used to define a constant in Java?",
+            "options": ["const", "final", "static", "define"],
+            "answer": "final"
+        },
+        {
+            "question": "What is the parent class of all classes in Java?",
+            "options": ["Object", "Main", "Super", "Parent"],
+            "answer": "Object"
+        }
+    ],
+    "C": [
+            {
+                "question": "What is the purpose of the 'printf' function in C?",
+                "options": ["Input data", "Output data", "Allocate memory", "Free memory"],
+                "answer": "Output data"
+            },
+            {
+                "question": "Which of the following is NOT a valid data type in C?",
+                "options": ["int", "float", "real", "char"],
+                "answer": "real"
+            },
+            {
+                "question": "What does the 'malloc' function do in C?",
+                "options": ["Free memory", "Allocate memory", "Print memory address", "Clear memory"],
+                "answer": "Allocate memory"
+            }
+        ],
+        "C++": [
+            {
+                "question": "What is the default access specifier for members of a class in C++?",
+                "options": ["public", "private", "protected", "static"],
+                "answer": "private"
+            },
+            {
+                "question": "Which operator is used for dynamic memory allocation in C++?",
+                "options": ["new", "malloc", "alloc", "create"],
+                "answer": "new"
+            },
+            {
+                "question": "What is the output of 'cout << sizeof(int);' in C++?",
+                "options": ["2", "4", "8", "Depends on the compiler"],
+                "answer": "Depends on the compiler"
+            }
+        ],
+        "Html": [
+            {
+                "question": "What does HTML stand for?",
+                "options": ["Hyper Text Markup Language", "High-Level Text Machine Language", "Hyperlink and Text Markup Language", "Home Tool Markup Language"],
+                "answer": "Hyper Text Markup Language"
+            },
+            {
+                "question": "Which tag is used to create a hyperlink in HTML?",
+                "options": ["<a>", "<link>", "<href>", "<hyperlink>"],
+                "answer": "<a>"
+            },
+            {
+                "question": "What is the correct HTML element for inserting a line break?",
+                "options": ["<br>", "<lb>", "<break>", "<line>"],
+                "answer": "<br>"
+            }
+        ],
+        "CSS": [
+            {
+                "question": "What does CSS stand for?",
+                "options": ["Cascading Style Sheets", "Computer Style Sheets", "Colorful Style Sheets", "Creative Style Sheets"],
+                "answer": "Cascading Style Sheets"
+            },
+            {
+                "question": "Which property is used to change the background color of an element?",
+                "options": ["color", "background-color", "bgcolor", "background"],
+                "answer": "background-color"
+            },
+            {
+                "question": "Which CSS property is used to control the text size?",
+                "options": ["font-style", "text-size", "font-size", "text-style"],
+                "answer": "font-size"
+            }
+        ],
+        "JavaScript": [
+            {
+                "question": "What is the correct syntax for referring to an external JavaScript file?",
+                "options": ["<script href='script.js'>", "<script name='script.js'>", "<script src='script.js'>", "<script file='script.js'>"],
+                "answer": "<script src='script.js'>"
+            },
+            {
+                "question": "Which of the following is NOT a JavaScript data type?",
+                "options": ["String", "Number", "Boolean", "Float"],
+                "answer": "Float"
+            },
+            {
+                "question": "What is the output of 'console.log(typeof null);' in JavaScript?",
+                "options": ["null", "undefined", "object", "string"],
+                "answer": "object"
+            }
+        ],
+        "C#": [
+        {
+            "question": "Which keyword is used to define a method in C#?",
+            "options": ["def", "function", "void", "method"],
+            "answer": "void"
+        },
+        {
+            "question": "What is the base class from which all classes in C# are derived?",
+            "options": ["BaseClass", "System.Object", "Root", "Main"],
+            "answer": "System.Object"
+        },
+        {
+            "question": "Which symbol is used for single-line comments in C#?",
+            "options": ["//", "/*", "#", "--"],
+            "answer": "//"
+        }
+    ],
+    "MongoDB": [
+        {
+            "question": "Which data format is used to store data in MongoDB?",
+            "options": ["JSON", "XML", "YAML", "CSV"],
+            "answer": "JSON"
+        },
+        {
+            "question": "What does the 'db.collection.find()' command do in MongoDB?",
+            "options": ["Insert documents", "Delete documents", "Query documents", "Update documents"],
+            "answer": "Query documents"
+        },
+        {
+            "question": "Which MongoDB command is used to insert data into a collection?",
+            "options": ["insert()", "add()", "put()", "create()"],
+            "answer": "insert()"
+        }
+    ],    
+    "Deep Learning": [
+        {
+            "question": "What is a common activation function used in deep learning?",
+            "options": ["ReLU", "Sigmoid", "Tanh", "All of the above"],
+            "answer": "All of the above"
+        },
+        {
+            "question": "Which of the following is a type of neural network?",
+            "options": ["CNN", "RNN", "DNN", "All of the above"],
+            "answer": "All of the above"
+        },
+        {
+            "question": "What is backpropagation used for?",
+            "options": ["Data augmentation", "Feature extraction", "Training neural networks", "Data normalization"],
+            "answer": "Training neural networks"
+        }
+    ],
+    "Data Science": [
+        {
+            "question": "What is the main goal of data science?",
+            "options": ["Build databases", "Analyze and extract insights from data", "Develop websites", "Manage cloud infrastructure"],
+            "answer": "Analyze and extract insights from data"
+        },
+        {
+            "question": "Which tool is commonly used in data science for visualization?",
+            "options": ["Matplotlib", "VS Code", "PyCharm", "TensorFlow"],
+            "answer": "Matplotlib"
+        },
+        {
+            "question": "Which language is widely used in data science?",
+            "options": ["Python", "Java", "HTML", "C#"],
+            "answer": "Python"
+        }
+    ],
+    "Data Analysis": [
+        {
+            "question": "What is the purpose of data analysis?",
+            "options": ["To create websites", "To identify patterns and insights in data", "To design graphics", "To build hardware"],
+            "answer": "To identify patterns and insights in data"
+        },
+        {
+            "question": "Which tool is commonly used for data analysis?",
+            "options": ["Excel", "Photoshop", "Unity", "AutoCAD"],
+            "answer": "Excel"
+        },
+        {
+            "question": "What is a pivot table used for?",
+            "options": ["Database indexing", "Summarizing data", "Drawing charts", "None of the above"],
+            "answer": "Summarizing data"
+        }
+    ],
+    "Pandas": [
+        {
+            "question": "Which data structure in Pandas is used for tabular data?",
+            "options": ["Series", "DataFrame", "Array", "List"],
+            "answer": "DataFrame"
+        },
+        {
+            "question": "How do you read a CSV file using Pandas?",
+            "options": ["pd.read_csv()", "pd.readfile()", "pd.load_csv()", "pd.open_csv()"],
+            "answer": "pd.read_csv()"
+        },
+        {
+            "question": "Which method is used to get the first 5 rows of a DataFrame?",
+            "options": ["head()", "first()", "top()", "begin()"],
+            "answer": "head()"
+        }
+    ],
+    "NumPy": [
+        {
+            "question": "What is NumPy used for in Python?",
+            "options": ["Web development", "Numerical computations", "Game development", "Image editing"],
+            "answer": "Numerical computations"
+        },
+        {
+            "question": "Which function is used to create an array in NumPy?",
+            "options": ["array()", "list()", "tuple()", "matrix()"],
+            "answer": "array()"
+        },
+        {
+            "question": "How do you get the shape of a NumPy array?",
+            "options": ["array.size", "array.shape", "array.dim", "array.length"],
+            "answer": "array.shape"
+        }
+    ],
+    "AWS": [
+        {
+            "question": "What does EC2 stand for in AWS?",
+            "options": ["Elastic Compute Cloud", "Easy Compute Cloud", "Enterprise Cloud Computing", "Elastic Container Cloud"],
+            "answer": "Elastic Compute Cloud"
+        },
+        {
+            "question": "Which AWS service is used for object storage?",
+            "options": ["EC2", "Lambda", "S3", "RDS"],
+            "answer": "S3"
+        },
+        {
+            "question": "What is IAM in AWS used for?",
+            "options": ["Monitoring", "Storage", "Security and access control", "Networking"],
+            "answer": "Security and access control"
+        }
+    ],
+    "Linux": [
+        {
+            "question": "Which command is used to list files in a directory in Linux?",
+            "options": ["ls", "dir", "list", "show"],
+            "answer": "ls"
+        },
+        {
+            "question": "Which symbol is used for chaining commands in Linux?",
+            "options": ["|", "&", "$", "*"],
+            "answer": "|"
+        },
+        {
+            "question": "What does the 'cd' command do in Linux?",
+            "options": ["Change directory", "Create directory", "Copy directory", "Clear display"],
+            "answer": "Change directory"
+        }
+    ],
+    "NLP": [
+        {
+            "question": "What does NLP stand for?",
+            "options": ["Natural Language Processing", "Neural Language Program", "New Language Protocol", "Natural Logic Parsing"],
+            "answer": "Natural Language Processing"
+        },
+        {
+            "question": "Which library is commonly used for NLP in Python?",
+            "options": ["NLTK", "NumPy", "TensorFlow", "Pandas"],
+            "answer": "NLTK"
+        },
+        {
+            "question": "What is tokenization in NLP?",
+            "options": ["Breaking text into words or sentences", "Creating new words", "Removing punctuation", "Parsing HTML"],
+            "answer": "Breaking text into words or sentences"
+        }
+    ],
+   
+    "Power BI": [
+        {
+            "question": "What is Power BI used for?",
+            "options": ["Data visualization", "Video editing", "Web design", "Programming"],
+            "answer": "Data visualization"
+        },
+        {
+            "question": "Which language is used in Power BI for data modeling?",
+            "options": ["DAX", "SQL", "M", "Both DAX and M"],
+            "answer": "Both DAX and M"
+        },
+        {
+            "question": "Which of the following is a Power BI component?",
+            "options": ["Power BI Desktop", "Power BI Service", "Power BI Mobile", "All of the above"],
+            "answer": "All of the above"
+        }
+    ],
+    "Excel": [
+        {
+        "question": "Which function in Excel calculates the average of numbers?",
+        "options": ["SUM", "COUNT", "AVERAGE", "MEDIAN"],
+        "answer": "AVERAGE"
+        },
+        {
+        "question": "What does a pivot table do in Excel?",
+        "options": ["Creates graphs", "Sorts data", "Summarizes large datasets", "Encrypts sheets"],
+        "answer": "Summarizes large datasets"
+        },
+        {
+        "question": "Which symbol is used for formulas in Excel?",
+        "options": ["@", "!", "=", "#"],
+        "answer": "="
+        }
+    ],
+    "Flask":[
+        {
+            "question": "What is Flask?",
+            "options": ["Python library for data analysis", "Python web framework", "JavaScript UI library", "Machine learning tool"],
+            "answer": "Python web framework"
+        },
+        {
+            "question": "Which command runs a Flask application?",
+            "options": ["flask run", "python start", "flask init", "app.start()"],
+            "answer": "flask run"
+        },
+        {
+            "question": "What is the default port Flask runs on?",
+            "options": ["3000", "8000", "5000", "8080"],
+            "answer": "5000"
+        }        
+    ]
+    }

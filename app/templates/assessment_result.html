@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Result</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: "Times New Roman", Times, serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Score styling */
+        .score {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .score.pass {
+            background-color: #2ecc71; /* Green for pass */
+            color: white;
+        }
+
+        .score.fail {
+            background-color: #e74c3c; /* Red for fail */
+            color: white;
+        }
+
+        /* Button styling */
+        .retake-button, .home-button {
+            background-color: #3498db; /* Blue color */
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 10px;
+        }
+
+        .retake-button:hover, .home-button:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+
+        .home-button {
+            background-color: #555; /* Gray color for home button */
+        }
+
+        .home-button:hover {
+            background-color: #444; /* Darker gray on hover */
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .retake-button, .home-button {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Assessment Result for {{ username }}</h1>
+    <p>Your score: 
+        <span class="score {% if score >= (questions|length / 2) %}pass{% else %}fail{% endif %}">
+            {{ score }} / {{ questions|length }}
+        </span>
+    </p>
+
+    <!-- Show retake button if the user failed -->
+    {% if score < (questions|length / 2) %}
+        <p>You did not pass. Would you like to retake the test?</p>
+        <button class="retake-button" onclick="retakeTest()">Retake Test</button>
+    {% else %}
+        <p>Congratulations! You passed the test.</p>
+    {% endif %}
+
+    <!-- Button to return to home or login -->
+    <button class="home-button" onclick="goToHome()">Return to Home</button>
+
+
+    <button class="home-button" onclick="goTodemointerview()">Demo Interview</button>
+    <script>
+        // Function to redirect to the assessment page
+        function retakeTest() {
+            window.location.href = "{{ url_for('start_assessment', username=username) }}";
+        }
+
+        // Function to redirect to the home or login page
+        function goToHome() {
+            window.location.href = "{{ url_for('student_results', username=username) }}";
+        }
+
+        function goTodemointerview() {
+            window.location.href = "{{ url_for('start_demo_interview', username=username) }}";
+        }
+    </script>
+</body>
+</html>

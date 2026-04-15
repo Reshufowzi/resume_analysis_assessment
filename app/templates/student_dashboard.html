@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Soft pink gradient */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container */
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        /* Heading */
+        h1 {
+            color: #ff6f61; /* Coral red */
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        /* Paragraph */
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Subheading */
+        h2 {
+            color: #ff6f61; /* Coral red */
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        /* Upload Form */
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Label */
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* File Input */
+        input[type="file"] {
+            padding: 10px;
+            font-size: 14px;
+            border: 2px dashed #ff6f61; /* Coral red */
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            border-color: #ff3b2f; /* Darker coral red */
+        }
+
+        /* Submit Button */
+        input[type="submit"] {
+            background-color: #ff6f61; /* Coral red */
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(255, 111, 97, 0.3);
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff3b2f; /* Darker coral red */
+        }
+
+        /* Pop-up Alert Card */
+        .alert-card {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffebee; /* Light red background */
+            color: #c62828; /* Dark red text */
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #c62828;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
+        }
+
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #c62828;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Keyframes for Slide-In Animation */
+        @keyframes slideIn {
+            from {
+                top: -100px;
+                opacity: 0;
+            }
+            to {
+                top: 20px;
+                opacity: 1;
+            }
+        }
+
+        /* Keyframes for Fade-Out Animation */
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        /* Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb); /* Multi-color gradient */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>You are logged in as a Student.</p>
+
+        <!-- Resume Upload Form -->
+        <h2>Upload Your Resume</h2>
+        <form class="upload-form" id="uploadForm" method="POST" action="{{ url_for('student_results', username=username) }}" enctype="multipart/form-data">
+            <label for="resume">Choose a resume (PDF only):</label>
+            <input type="file" name="resume" id="resume" required><br><br>
+            <input type="submit" value="Upload Resume">
+        </form>
+    </div>
+
+    <!-- Pop-up Alert Card -->
+    <div class="alert-card" id="alertCard">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        Invalid file type! Please upload only PDF files.
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('resume');
+        const alertCard = document.getElementById('alertCard');
+        const closeBtn = document.getElementById('closeBtn');
+        const uploadForm = document.getElementById('uploadForm');
+
+        // Show alert card if invalid file type is uploaded
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const allowedType = 'application/pdf'; // Only allow PDF files
+
+            if (file && file.type !== allowedType) {
+                alertCard.style.display = 'block';
+                alertCard.style.animation = 'slideIn 0.5s ease-out'; // Slide-in animation
+                setTimeout(() => {
+                    alertCard.style.animation = 'fadeOut 0.5s ease-out'; // Fade-out animation
+                    setTimeout(() => {
+                        alertCard.style.display = 'none';
+                    }, 500); // Hide after fade-out
+                }, 2500); // Show for 2.5 seconds
+
+                // Clear the file input to prevent invalid uploads
+                fileInput.value = '';
+            }
+        });
+
+        // Close alert card when close button is clicked
+        closeBtn.addEventListener('click', function() {
+            alertCard.style.animation = 'fadeOut 0.5s ease-out'; // Fade-out animation
+            setTimeout(() => {
+                alertCard.style.display = 'none';
+            }, 500); // Hide after fade-out
+        });
+
+        // Prevent form submission if file is not PDF
+        uploadForm.addEventListener('submit', function(event) {
+            const file = fileInput.files[0];
+            const allowedType = 'application/pdf'; // Only allow PDF files
+
+            if (file && file.type !== allowedType) {
+                event.preventDefault(); // Stop form submission
+                alertCard.style.display = 'block';
+                alertCard.style.animation = 'slideIn 0.5s ease-out'; // Slide-in animation
+                setTimeout(() => {
+                    alertCard.style.animation = 'fadeOut 0.5s ease-out'; // Fade-out animation
+                    setTimeout(() => {
+                        alertCard.style.display = 'none';
+                    }, 500); // Hide after fade-out
+                }, 2500); // Show for 2.5 seconds
+
+                // Clear the file input to prevent invalid uploads
+                fileInput.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

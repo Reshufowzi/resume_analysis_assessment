@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experienced Candidate Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Soft pink gradient */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        /* Container */
+        .container {
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Headings */
+        h1 {
+            color: #ff6f61; /* Coral red */
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #6a11cb; /* Purple */
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="number"], input[type="file"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ff6f61; /* Coral red */
+            border-radius: 8px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, input[type="file"]:focus {
+            border-color: #ff3b2f; /* Darker coral red */
+            outline: none;
+        }
+
+        input[type="file"] {
+            padding: 8px;
+        }
+
+        /* Submit Button */
+        input[type="submit"] {
+            background-color: #ff6f61; /* Coral red */
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(255, 111, 97, 0.3);
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff3b2f; /* Darker coral red */
+        }
+
+        /* Background Animation */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb); /* Multi-color gradient */
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}!</h1>
+        <p>You are logged in as an Experienced Candidate.</p>
+
+        <!-- Form for Experienced Candidate Information -->
+        <h2>Enter Your Information</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <label for="total_experience">Total Experience (in years):</label>
+            <input type="number" name="total_experience" id="total_experience" required><br><br>
+
+            <label for="current_position">Current Position:</label>
+            <input type="text" name="current_position" id="current_position" required><br><br>
+
+            <label for="current_company">Current Company:</label>
+            <input type="text" name="current_company" id="current_company" required><br><br>
+
+            <label for="resume">Upload Your Resume (PDF, DOCX, TXT):</label>
+            <input type="file" name="resume" id="resume" required><br><br>
+
+            <input type="submit" value="Upload Resume">
+        </form>
+    </div>
+</body>
+</html>

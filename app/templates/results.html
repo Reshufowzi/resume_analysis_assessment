@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis Results</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4; /* Light gray background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Container */
+        .container {
+            background: #fff; /* White background */
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 500px; /* Slightly wider for better readability */
+            width: 100%;
+            text-align: center;
+            margin: 20px;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        /* Headings */
+        h1, h2, h3 {
+            color: #ff6f61; /* Coral red */
+            margin: 0 0 15px 0;
+        }
+
+        h1 {
+            font-size: 24px; /* Slightly smaller heading */
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        /* Name Section */
+        .name-card {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee); /* Gradient background */
+            color: #333; /* Dark text for contrast */
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out, colorChangeName 8s infinite alternate;
+        }
+
+        /* ATS Score Section */
+        .score-card {
+            background: linear-gradient(45deg, #a6c1ee, #fbc2eb, #fad0c4, #ff9a9e); /* Gradient background */
+            color: #333; /* Dark text for contrast */
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.5s ease-in-out, colorChangeScore 8s infinite alternate;
+        }
+
+        /* Skills Section */
+        .skills-card {
+            background: linear-gradient(45deg, #fad0c4, #ff9a9e, #a6c1ee, #fbc2eb); /* Gradient background */
+            color: #333; /* Dark text for contrast */
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease-in-out, colorChangeSkills 8s infinite alternate;
+        }
+
+        .skills-card ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px; /* Smaller gap between skills */
+        }
+
+        .skills-card ul li {
+            background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+            padding: 6px 12px; /* Smaller padding */
+            border-radius: 20px;
+            font-size: 12px; /* Smaller font size */
+            color: #333; /* Dark text */
+        }
+
+        /* Suggestion Section */
+        .suggestion-card {
+            background: linear-gradient(45deg, #a6c1ee, #fbc2eb, #fad0c4, #ff9a9e); /* Gradient background */
+            color: #333; /* Dark text for contrast */
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2.5s ease-in-out, colorChangeScore 8s infinite alternate;
+        }
+
+        .suggestion-card p {
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Buttons */
+        button {
+            background-color: #ff6f61; /* Coral red */
+            color: #fff;
+            padding: 10px 16px; /* Smaller padding */
+            font-size: 14px; /* Smaller font size */
+            border: none;
+            cursor: pointer;
+            margin: 10px; /* Smaller margin */
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(255, 111, 97, 0.3);
+        }
+
+        button:hover {
+            background-color: #ff3b2f; /* Darker coral red */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes colorChangeName {
+            0% { background: #ff9a9e; }
+            25% { background: #fad0c4; }
+            50% { background: #fbc2eb; }
+            75% { background: #a6c1ee; }
+            100% { background: #ff9a9e; }
+        }
+
+        @keyframes colorChangeScore {
+            0% { background: #a6c1ee; }
+            25% { background: #fbc2eb; }
+            50% { background: #fad0c4; }
+            75% { background: #ff9a9e; }
+            100% { background: #a6c1ee; }
+        }
+
+        @keyframes colorChangeSkills {
+            0% { background: #fad0c4; }
+            25% { background: #ff9a9e; }
+            50% { background: #a6c1ee; }
+            75% { background: #fbc2eb; }
+            100% { background: #fad0c4; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Resume Analysis for {{ username }}</h1>
+
+        <!-- Name Section -->
+        <div class="name-card">
+            <h2>Name: {{ extracted_name }}</h2>
+        </div>
+
+        <!-- ATS Score Section -->
+        <div class="score-card">
+            <h2>ATS Resume Score: {{ ats_score }}</h2>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="skills-card">
+            <h3>Extracted Skills:</h3>
+            <ul>
+                {% for skill in skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Resume Improvement Suggestions -->
+        <div class="suggestion-card">
+            <h3>Resume Improvement Suggestions:</h3>
+            <p>
+                {% if ats_score == 100 %}
+                    🎉 Congratulations! Your resume is excellent. Keep up the good work!
+                {% elif ats_score >= 80 %}
+                    👍 Your resume is strong, but here are a few suggestions to make it even better:
+                    <ul>
+                        <li>Add more quantifiable achievements (e.g., "Increased sales by 20%").</li>
+                        <li>Use action verbs like "developed," "managed," or "optimized."</li>
+                        <li>Tailor your resume to the specific job description.</li>
+                    </ul>
+                {% elif ats_score >= 50 %}
+                    🔧 Your resume is decent, but it needs some improvements:
+                    <ul>
+                        <li>Include more relevant keywords from the job description.</li>
+                        <li>Highlight your most recent and relevant experience.</li>
+                        <li>Ensure consistent formatting and avoid typos.</li>
+                    </ul>
+                {% else %}
+                    🛠️ Your resume needs significant improvements. Here's how to fix it:
+                    <ul>
+                        <li>Add more skills and keywords relevant to the job.</li>
+                        <li>Focus on achievements rather than responsibilities.</li>
+                        <li>Use a clean, professional format.</li>
+                    </ul>
+                {% endif %}
+            </p>
+        </div>
+
+        <!-- Start Assessment -->
+        <form action="{{ url_for('start_assessment', username=username) }}" method="POST">
+            <button type="submit">Start Assessment</button>
+        </form>
+
+        <!-- Start Demo Interview -->
+        <form action="{{ url_for('start_demo_interview', username=username) }}" method="POST">
+            <button type="submit">Start Demo Interview</button>
+        </form>
+    </div>
+
+</body>
+</html>

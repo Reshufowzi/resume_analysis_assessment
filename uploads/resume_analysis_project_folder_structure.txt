@@ -1,0 +1,25 @@
+resume_analysis_project/
+│
+├── app/
+│   ├── __init__.py                # Initialize the Flask app
+│   ├── routes.py                  # Define the routes (login, resume upload, etc.)
+│   ├── models.py                  # Define any database models (User, Resume, etc.)
+│   ├── templates/                 # HTML templates for the frontend
+│   │   ├── layout.html            # Base layout (header, footer)
+│   │   ├── login.html             # Login page template
+│   │   ├── jobseeker_dashboard.html         # for jobseeker login
+│   │   ├── student_dashboard.html         # for student  successful login 
+│   │   ├── dashboard.html         # Dashboard after successful login
+│   │   ├── resume_upload.html     # Resume upload page
+│   │   └── results.html           # Page to display results (skills, marks)
+│   ├── static/                    # Static files (CSS, JS, images)
+│   │   ├── css/
+│   │   └── js/
+│   ├── utils/                     # Utility functions (e.g., NLP processing)
+│   │   ├── resume_analysis.py     # Code for resume parsing
+│   │   ├── video_capture.py       # Code for video capture
+│   │   └── question_generator.py  # Code for dynamic question generation
+│
+├── config.py                      # Configuration settings (e.g., MongoDB, secret key)
+├── requirements.txt               # List of dependencies (Flask, NLP libraries, etc.)
+└── run.py                         # Entry point for running the app
