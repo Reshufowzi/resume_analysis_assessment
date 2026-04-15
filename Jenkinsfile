@@ -9,13 +9,6 @@ pipeline {
     }
 
     stages {
-
-        stage('Clone Code') {
-            steps {
-                git url: 'https://github.com/YOUR_USERNAME/resume_analysis_assessment.git', branch: 'main'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 sh '''
