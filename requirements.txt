@@ -9,4 +9,4 @@ python-dotenv==1.0.0
 opencv-python==4.7.0.72  # For video capturing (if needed)
 scikit-learn==1.2.0  # For any machine learning models (if used)
 matplotlib==3.7.0  # For visualization charts (if required)
-pdfplumber==0.7.8  # For reading PDF resumes
+pdfplumber==0.7.6                    #pdfplumber==0.7.  # For reading PDF resumes
